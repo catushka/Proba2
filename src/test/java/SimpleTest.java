@@ -12,6 +12,9 @@ public class SimpleTest {
     public void TestOpenPage () {
 
         WebDriver driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get("https://disk.yandex.ru/");
 
@@ -22,18 +25,17 @@ public class SimpleTest {
         FieldLogin.clear();
 
         FieldLogin.sendKeys("t3stowyj.t@yandex.ru");
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-        WebElement ButtonLogin = driver.findElement(By.cssSelector(".passp-form-button"));
+        WebElement ButtonLogin = driver.findElement(By.cssSelector("button[type='submit']"));
         ButtonLogin.click();
 
         WebElement FieldPassword = driver.findElement(By.id("passp-field-passwd"));
         FieldPassword.clear();
 
         FieldPassword.sendKeys("t3stowyj.tQ1w2e3r4");
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        WebElement ButtonPassword = driver.findElement(By.cssSelector(".passp-form-button"));
+        WebElement ButtonPassword = driver.findElement(By.cssSelector("button[type='submit']"));
         ButtonPassword.click();
 
         driver.quit();
